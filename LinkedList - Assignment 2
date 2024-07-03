@@ -1,0 +1,48 @@
+import java.util.LinkedList;
+import java.util.List;
+
+class Tester {
+
+    public static List<Integer> findCommonElements(List<Integer> listOne, List<Integer> listTwo) {
+        List<Integer> commonElements = new LinkedList<>();
+
+        // Create a HashSet to store elements from listOne for quick lookup
+        // This assumes average O(1) time complexity for contains() operation
+        // and ensures we do not add duplicate common elements
+        // even if listOne contains duplicate elements
+        Set<Integer> set = new HashSet<>(listOne);
+
+        for (Integer num : listTwo) {
+            if (set.contains(num)) {
+                commonElements.add(num);
+                // Remove the element from set to handle duplicates in listOne
+                set.remove(num);
+            }
+        }
+
+        return commonElements;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> listOne = new LinkedList<>();
+        listOne.add(10);
+        listOne.add(12);
+        listOne.add(21);
+        listOne.add(1);
+        listOne.add(53);
+
+        List<Integer> listTwo = new LinkedList<>();
+        listTwo.add(11);
+        listTwo.add(21);
+        listTwo.add(25);
+        listTwo.add(53);
+        listTwo.add(47);
+
+        List<Integer> commonElements = findCommonElements(listOne, listTwo);
+
+        System.out.println("Common Elements:");
+        for (Integer num : commonElements) {
+            System.out.print(num + " ");
+        }
+    }
+}
