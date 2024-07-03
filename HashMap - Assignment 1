@@ -1,0 +1,42 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+class Tester {
+    
+    public static List<String> sortSales(Map<String, Integer> sales) {
+        // Step 1: Create a list of map entries
+        List<Map.Entry<String, Integer>> entries = new ArrayList<>(sales.entrySet());
+        
+        // Step 2: Sort the list of entries based on sales in descending order
+        Collections.sort(entries, (entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+        
+        // Step 3: Create a list to store sorted employee names
+        List<String> sortedEmployees = new ArrayList<>();
+        
+        // Step 4: Extract employee names from sorted entries
+        for (Map.Entry<String, Integer> entry : entries) {
+            sortedEmployees.add(entry.getKey());
+        }
+        
+        return sortedEmployees;
+    }
+
+    public static void main(String args[]) {
+        Map<String, Integer> sales = new HashMap<>();
+        sales.put("Mathew", 50);
+        sales.put("Lisa", 76);
+        sales.put("Courtney", 45);
+        sales.put("David", 49);
+        sales.put("Paul", 49);
+        
+        List<String> employees = sortSales(sales);
+        
+        System.out.println("Employees in the decreasing order of their sales\n=====================================");
+        for (String employeeName : employees) {
+            System.out.println(employeeName);
+        }
+    }
+}
