@@ -1,0 +1,57 @@
+import java.util.LinkedList;
+
+class Queue {
+    private LinkedList<String> queue;
+    private int maxSize;
+
+    public Queue(int maxSize) {
+        this.maxSize = maxSize;
+        this.queue = new LinkedList<>();
+    }
+
+    // Method to add an element to the queue (enqueue operation)
+    public void enqueue(String element) {
+        if (queue.size() < maxSize) {
+            queue.addLast(element);
+            System.out.println(element + " added to the queue.");
+        } else {
+            System.out.println("Queue is full. Cannot add " + element);
+        }
+    }
+
+    // Method to remove an element from the front of the queue (dequeue operation)
+    public void dequeue() {
+        if (!queue.isEmpty()) {
+            String removedElement = queue.removeFirst();
+            System.out.println(removedElement + " removed from the queue.");
+        } else {
+            System.out.println("Queue is empty. Cannot remove element.");
+        }
+    }
+
+    // Method to get the current state of the queue
+    public LinkedList<String> getQueue() {
+        return queue;
+    }
+}
+
+class Tester {
+
+    public static void main(String args[]) {
+        Queue queue = new Queue(5);
+
+        queue.enqueue("Emily");
+        queue.enqueue("Lily");
+        queue.enqueue("Rachel");
+        queue.enqueue("Rose");
+
+        queue.dequeue();
+        queue.dequeue();
+
+        System.out.println("Current queue state:");
+        LinkedList<String> currentQueue = queue.getQueue();
+        for (String element : currentQueue) {
+            System.out.println(element);
+        }
+    }
+}
